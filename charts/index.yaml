@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  vishweb:
+  - apiVersion: v1
+    appVersion: "1.2"
+    created: "2021-04-27T16:35:06.802541256+05:30"
+    digest: 30b0a385809deefa1b07ae8ef52c77574bf8fe92d7c5e3a4d43ddd2849ad3dac
+    name: vishweb
+    urls:
+    - vishweb-0.1.tgz
+    version: "0.1"
+generated: "2021-04-27T16:35:06.801592854+05:30"

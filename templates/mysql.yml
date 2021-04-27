@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: {{ .Values.sql_db_name }}
+  name:  {{ .Values.sql_db_name }}
+spec:
+  replicas:  {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      run:  {{ .Values.sql_db_name }}
+
+  template:
+    metadata:
+      labels:
+        run:   {{ .Values.sql_db_name }}
+
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+              secretKeyRef:
+                      name:  vishsecret
+                      key:   pass
+        - name: MYSQL_DATABASE
+          value:  {{ .Values.data_base_name }}
+        - name: MYSQL_USER
+          value:  {{ .Values.user }}
+        - name: MYSQL_PASSWORD
+          valueFrom:
+              secretKeyRef:
+                      name:  vishsecret
+                      key:   pass
+        image:  {{ .Values.sql_image }}
+        name:  {{ .Values.sql_db_name }}

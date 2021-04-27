@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: {{ .Values.wordpress }}
+  name: {{ .Values.wordpress }}
+spec:
+  selector:
+    matchLabels:
+      run:  {{ .Values.wordpress }}
+  replicas:  {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        run:  {{ .Values.wordpress }}
+    spec:
+      containers:
+      - image: {{ .Values.wordpress_image }}
+        name: {{ .Values.wordpress }}
